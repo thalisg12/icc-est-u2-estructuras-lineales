@@ -1,4 +1,9 @@
+import java.util.Queue;
+
+import Controllers.QueueG;
 import Controllers.Stack;
+import Controllers.StackG;
+import Models.Persona;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -14,5 +19,43 @@ public class App {
 
         System.out.println("Tamaño:" + st.size());
         st.printStack();
+
+        StackG<Integer> sG = new StackG<Integer>();
+        sG.push(10);
+        sG.push(8);
+        sG.push(-1);
+        sG.push(5);
+        System.out.println("Tamaño:" + sG.size());
+        sG.printStack();
+        sG.pop();
+        System.out.println("Tamaño:" + sG.size());
+        sG.printStack();
+
+        Persona p1 = new Persona("Juan");
+        Persona p2 = new Persona("Maria");
+        Persona p3 = new Persona("Pedro");
+        Persona p4 = new Persona("David");
+
+        QueueG<Persona> colas = new QueueG<Persona>();
+        colas.add(p1);
+        colas.add(p2);
+        colas.add(p3);
+        colas.add(p4);
+        colas.printQueue();
+        System.out.println("Persona Atendida ->" + colas.remove());
+        colas.printQueue();
+        ;
+
+        Persona pB = colas.findByName("Juan");
+        System.out.println("Persona encontrada " + pB != null ? pB : "ninguna");
+        // retorna persona si encontro
+        // retorna null si no encontro
+        Persona pE = colas.deleteByName("Pedro");
+        System.out.println("Persona eliminada " + pE != null ? pE : "ninguna");
+
+        // Juan | Maria | Pedro
+        // persona atendida -> Juan
+        // Maria | Pedro | David
+
     }
 }

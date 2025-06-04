@@ -57,6 +57,5 @@ public class Stack {
         }
         return cont;
     }
-    // tamaño; 4
-    // tamaño: 3
+
 }
