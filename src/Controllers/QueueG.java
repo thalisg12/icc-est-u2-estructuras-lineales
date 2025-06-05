@@ -2,6 +2,7 @@ package Controllers;
 
 import java.util.NoSuchElementException;
 import Models.NodeGeneric;
+import Models.Persona;
 
 public class QueueG<T> {
 
@@ -58,9 +59,49 @@ public class QueueG<T> {
     public void printQueue() {
         NodeGeneric<T> aux = primero;
         while (aux != null) {
-            System.out.print(aux.getValue() + " -> ");
+            System.out.print(aux.getValue() + " | ");
             aux = aux.getNext();
         }
-        System.out.println("null");
+        System.out.println();
     }
+
+    public Persona findByName(String nombre) {
+        NodeGeneric<T> actual = primero;
+        while (actual != null) {
+            if (actual.getValue() instanceof Persona) {
+                Persona p = (Persona) actual.getValue();
+                if (p.getNombre().equals(nombre)) {
+                    return p;
+                }
+            }
+            actual = actual.getNext();
+        }
+        return null;
+    }
+
+    public Persona deleteByName(String nombre) {
+        NodeGeneric<T> actual = primero;
+        NodeGeneric<T> anterior = null;
+
+        while (actual != null) {
+            if (actual.getValue() instanceof Persona) {
+                Persona p = (Persona) actual.getValue();
+                if (p.getNombre().equals(nombre)) {
+                    if (anterior == null) { // es el primero
+                        primero = actual.getNext();
+                    } else {
+                        anterior.setNext(actual.getNext());
+                    }
+                    if (actual == ultimo) {
+                        ultimo = anterior;
+                    }
+                    return p;
+                }
+            }
+            anterior = actual;
+            actual = actual.getNext();
+        }
+        return null;
+    }
+
 }

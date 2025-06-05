@@ -30,6 +30,7 @@ public class App {
         sG.pop();
         System.out.println("Tamaño:" + sG.size());
         sG.printStack();
+        System.out.println("--------------------------------------------------");
 
         Persona p1 = new Persona("Juan");
         Persona p2 = new Persona("Maria");
@@ -41,21 +42,17 @@ public class App {
         colas.add(p2);
         colas.add(p3);
         colas.add(p4);
+
         colas.printQueue();
-        System.out.println("Persona Atendida ->" + colas.remove());
-        colas.printQueue();
-        ;
 
         Persona pB = colas.findByName("Juan");
-        System.out.println("Persona encontrada " + pB != null ? pB : "ninguna");
-        // retorna persona si encontro
-        // retorna null si no encontro
-        Persona pE = colas.deleteByName("Pedro");
-        System.out.println("Persona eliminada " + pE != null ? pE : "ninguna");
+        System.out.println("Persona encontrada -> " + (pB != null ? pB : "ninguna"));
 
-        // Juan | Maria | Pedro
-        // persona atendida -> Juan
-        // Maria | Pedro | David
+        System.out.println("Persona Atendida ->" + colas.remove());
+        colas.printQueue();
+
+        Persona pE = colas.deleteByName("Pedro");
+        System.out.println("Persona eliminada -> " + (pE != null ? pE : "ninguna"));
 
     }
 }
